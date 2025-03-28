@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSV Creations AR Pamplate</title>
+    <meta name="viewport" content="width=device-width, height=device-height">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- A-Frame and AR.js Libraries -->
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"></script>
+
+    <!-- Custom Component to Smooth Tracking -->
+    <script>
+        AFRAME.registerComponent('smooth-tracking', {
+            init: function () {
+                this.position = new THREE.Vector3();
+                this.rotation = new THREE.Euler();
+            },
+            tick: function (time, delta) {
+                const smoothingFactor = 0.1; // Lower = smoother, slower response
+                const obj = this.el.object3D;
+
+                // Smooth position
+                this.position.lerp(obj.position, smoothingFactor);
+                obj.position.copy(this.position);
+
+                // Smooth rotation
+                this.rotation.x = THREE.Math.lerp(this.rotation.x, obj.rotation.x, smoothingFactor);
+                this.rotation.y = THREE.Math.lerp(this.rotation.y, obj.rotation.y, smoothingFactor);
+                this.rotation.z = THREE.Math.lerp(this.rotation.z, obj.rotation.z, smoothingFactor);
+                obj.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene id="scene" arjs='trackingMethod: best; debugUIEnabled: false;' vr-mode-ui="enabled: false">
+        <!-- Assets -->
+        <a-assets>
+<!--             <img id="background" src="images/layer_01_1920x1080.png"> -->
+<!--             <img id="title" src="images/layer_02_1920x1080.png"> -->
+<!--             <img id="image1" src="images/layer_03_1920x1080.png"> -->
+            <img id="image2" src="images/layer_04_1920x1080.png">
+        </a-assets>
+
+        <!-- Marker with Layered Content -->
+        <a-marker id="marker1" type='pattern' url='markers/pattern-Capture.patt' smooth-tracking>
+            <!-- Group to center the stack -->
+            <a-entity position="0 0 0">
+                <!-- Background Layer (base) -->
+<!--                 <a-plane position="0 0 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#background; transparent:false; opacity:1"></a-plane> -->
+
+                <!-- Title Layer -->
+<!--                 <a-plane position="0 0.5 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#title; transparent:true; opacity:1"></a-plane> -->
+
+                <!-- Foreground Images -->
+<!--                 <a-plane position="0 1 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#image1; transparent:true; opacity:1"></a-plane> -->
+                <a-plane position="0 1.5 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#image2; transparent:true; opacity:1"></a-plane>
+            </a-entity>
+        </a-marker>
+
+        <!-- Camera with Adjusted FOV -->
+        <a-entity camera fov="40"></a-entity>
+    </a-scene>
+</body>
+</html>
