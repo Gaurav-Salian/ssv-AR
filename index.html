@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SSV Creations AR tPamplate</title>
+    <title>AR Invitation with Layered 3D</title>
     <meta name="viewport" content="width=device-width, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -36,11 +36,13 @@
 <body>
     <a-scene id="scene" arjs='trackingMethod: best; debugUIEnabled: false;' vr-mode-ui="enabled: false">
         <!-- Assets -->
-        <a-assets>
-<!--             <img id="background" src="images/layer_01_1920x1080.png"> -->
-<!--             <img id="title" src="images/layer_02_1920x1080.png"> -->
-<!--             <img id="image1" src="images/layer_03_1920x1080.png"> -->
-            <img id="image2" src="images/PAMPLET.png">
+<!--         <a-assets>
+            <img id="background" src="images/layer_01_1920x1080.png">
+            <img id="title" src="images/layer_02_1920x1080.png">
+            <img id="image1" src="images/layer_03_1920x1080.png"> -->
+<!--             <img id="image2" src="images/layer_04_1920x1080.png"> -->
+                        <img id="image2" src="images/PAMPLET.png">
+
         </a-assets>
 
         <!-- Marker with Layered Content -->
@@ -48,17 +50,17 @@
             <!-- Group to center the stack -->
             <a-entity position="0 0 0">
                 <!-- Background Layer (base) -->
-<!--                 <a-plane position="0 0 0" rotation="-90 0 0" scale="2 2 1" 
-                         material="src:#background; transparent:false; opacity:1"></a-plane> -->
+                <a-plane position="0 0 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#background; transparent:false; opacity:1"></a-plane>
 
                 <!-- Title Layer -->
-<!--                 <a-plane position="0 0.5 0" rotation="-90 0 0" scale="2 2 1" 
-                         material="src:#title; transparent:true; opacity:1"></a-plane> -->
+                <a-plane position="0 0.5 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#title; transparent:true; opacity:1"></a-plane>
 
                 <!-- Foreground Images -->
-<!--                 <a-plane position="0 1 0" rotation="-90 0 0" scale="2 2 1" 
-                         material="src:#image1; transparent:true; opacity:1"></a-plane> -->
-                <a-plane position="0 0 0" rotation="-90 0 0" scale="2 2 1" 
+                <a-plane position="0 1 0" rotation="-90 0 0" scale="2 2 1" 
+                         material="src:#image1; transparent:true; opacity:1"></a-plane>
+                <a-plane position="0 1.5 0" rotation="-90 0 0" scale="2 2 1" 
                          material="src:#image2; transparent:true; opacity:1"></a-plane>
             </a-entity>
         </a-marker>
